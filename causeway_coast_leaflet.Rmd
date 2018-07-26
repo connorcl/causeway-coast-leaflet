@@ -1,0 +1,53 @@
+---
+title: "The Causeway Coast Way, NI"
+author: "Connor Claypool"
+date: "26 July 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This map is a demo of `leaflet` for interactive mapping in R, and shows some of the main points of interest on or near the Causeway Coast Way, a popular walking trail in Northern Ireland. Clicking a marker reveals the name of that specific location.
+
+```{r, fig.width=10, message=FALSE, echo=FALSE}
+
+cc <- data.frame(
+    lat = c(55.200645,
+            55.299015,
+            55.239573,
+            55.240282,
+            55.238393,
+            55.241193,
+            55.215755,
+            55.210764,
+            55.205426,
+            55.185117
+            ),
+    lng = c(-6.250119,
+            -6.206728,
+            -6.332456,
+            -6.367019,
+            -6.448212,
+            -6.511899,
+            -6.544450,
+            -6.579662,
+            -6.657812,
+            -6.719142
+            ),
+    popup = c("The Diamond, Ballycastle",
+              "Rathlin Island",
+              "Carrick-a-Rede Rope Bridge",
+              "Ballintoy Parish Church",
+              "Dunseverick Castle",
+              "Giant's Causeway",
+              "Bayview Hotel, Portballintrae",
+              "Dunluce Castle",
+              "Portrush Harbour",
+              "The Promenade, Portstewart")
+)
+
+library(dplyr)
+library(leaflet)
+cc %>% leaflet() %>% addTiles() %>% addMarkers(popup = ~popup)
