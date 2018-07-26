@@ -13,7 +13,10 @@ This map is a demo of `leaflet` for interactive mapping in R, and shows some of 
 
 ```{r, fig.width=10, message=FALSE, echo=FALSE}
 
-cc <- data.frame(
+library(dplyr)
+library(leaflet)
+
+locations <- data.frame(
     lat = c(55.200645,
             55.299015,
             55.239573,
@@ -48,6 +51,4 @@ cc <- data.frame(
               "The Promenade, Portstewart")
 )
 
-library(dplyr)
-library(leaflet)
-cc %>% leaflet() %>% addTiles() %>% addMarkers(popup = ~popup)
+locations %>% leaflet() %>% addTiles() %>% addMarkers(popup = ~popup)
